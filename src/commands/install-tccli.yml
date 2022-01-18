@@ -8,6 +8,7 @@ parameters:
     default: "World"
     description: "Hello to whom?"
 steps:
-  - run:
-      name: setup python
-      command: << include(scripts/setup-python.sh) >>
+  - run: echo "hello"
+  # - run:
+  #     name: setup python
+  #     command: << include(scripts/setup-python.sh) >>
