@@ -1,3 +1,8 @@
+if [ which python3 ] || [ which pip3 ]; then
+    echo "already set up."
+    exit 0
+fi
+
 if which apt-get; then
     export CMD=apt-get
 else

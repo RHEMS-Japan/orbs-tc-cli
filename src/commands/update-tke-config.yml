@@ -1,0 +1,38 @@
+description: >
+  This command echos "Hello World" using file inclusion.
+parameters:
+  install-kubectl:
+    type: boolean
+    default: false
+    description: Whether to install kubectl
+  install-tccli:
+    type: boolean
+    default: true
+    description: Whether to install tccli
+steps:
+  - jq/install
+  - when:
+      condition: << parameters.install-kubectl >>
+      steps:
+        - kubernetes/install
+  - when:
+      condition: << parameters.install-tccli >>
+      steps:
+        - tc-cli/install-tccli
+  - run:
+      name: setup $HOME/.kube/config
+      command: |
+        if [ ! -d $HOME/.kube ]; then
+          mkdir $HOME/.kube
+        fi
+        cd $HOME/.kube
+
+        tccli tke  DescribeClusterKubeconfig --ClusterId cls-eqc4zbbk > tke-config.json
+
+        cat tke-config.json
+
+        echo -e "$(cat tke-config.json | jq '.Kubeconfig' | sed -e 's/\\"//g' -e 's/"//g')" > config
+        
+        cat config
+
+        kubectl config get-contexts | awk '{print $2}' | sed -n 2P
