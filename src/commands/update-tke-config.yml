@@ -18,8 +18,7 @@ steps:
   - when:
       condition: << parameters.install-tccli >>
       steps:
-        - run: echo "HOGE"
-        # - tc-cli/install-tccli
+        - tc-cli/install-tccli
   - run:
       name: setup $HOME/.kube/config
       command: |
