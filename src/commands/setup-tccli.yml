@@ -14,7 +14,7 @@ parameters:
     default: "TC_REGION"
     description: ""
 steps:
-  - tc-cli/install-tccli
+  # - tc-cli/install-tccli
   - run:
       name: setup tccli
       environment:
