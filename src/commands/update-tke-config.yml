@@ -31,7 +31,7 @@ steps:
 
         cat tke-config.json
 
-        echo -e "$(cat tke-config.json | jq '.Kubeconfig' | sed -e 's/\\"//g' -e 's/"//g')" > config
+        echo -e "$(cat tke-config.json | jq '.Kubeconfig' | sed -e 's/\\"/"/g'  -e 's/"//')" | head -n -2 > config
 
         cat config
 
