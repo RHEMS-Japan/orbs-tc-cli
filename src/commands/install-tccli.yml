@@ -9,7 +9,5 @@ parameters:
     description: "Hello to whom?"
 steps:
   - run:
-      environment:
-        PARAM_TO: <<parameters.to>>
-      name: Hello Greeting
-      command: <<include(scripts/greet.sh)>>
+      name: setup python
+      command: << include(scripts/setup-python.sh) >>
