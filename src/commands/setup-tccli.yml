@@ -25,7 +25,7 @@ steps:
         PARAM_TC_SECRET_ID=$(eval echo "\$$PARAM_TC_SECRET_ID")
         PARAM_TC_SECRET_KEY=$(eval echo "\$$PARAM_TC_SECRET_KEY")
         PARAM_TC_REGION=$(eval echo "\$$PARAM_TC_REGION")
-        
+
         tccli configure set secretId ${PARAM_TC_SECRET_ID}
         tccli configure set secretKey ${PARAM_TC_SECRET_KEY}
         tccli configure set region ${PARAM_TC_REGION}

@@ -32,7 +32,7 @@ steps:
         cat tke-config.json
 
         echo -e "$(cat tke-config.json | jq '.Kubeconfig' | sed -e 's/\\"//g' -e 's/"//g')" > config
-        
+
         cat config
 
         kubectl config get-contexts | awk '{print $2}' | sed -n 2P
