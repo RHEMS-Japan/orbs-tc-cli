@@ -1,6 +1,4 @@
-which apt-get 2> /dev/null
-
-if [ $? -eq 0 ]; then
+if which apt-get; then
     export CMD=apt-get
 else
     export CMD=yum
