@@ -9,9 +9,9 @@ parameters:
     type: boolean
     default: true
     description: Whether to install tccli
-  cluster-name:
+  cluster-id:
     type: string
-    description: The name of the cluster for which to create a kubeconfig entry.
+    description: The id of the cluster for which to create a kubeconfig entry.
 steps:
   - jq/install
   - when:
@@ -30,6 +30,6 @@ steps:
         fi
         cd $HOME/.kube
 
-        tccli tke  DescribeClusterKubeconfig --ClusterId cls-eqc4zbbk > tke-config.json
+        tccli tke DescribeClusterKubeconfig --ClusterId << parameters.cluster-id >> > tke-config.json
         echo -e "$(cat tke-config.json | jq '.Kubeconfig' | sed -e 's/\\"/"/g'  -e 's/"//')" | head -n -2 > config
         kube config use-context $(kubectl config get-contexts | awk '{print $2}' | sed -n 2P)
