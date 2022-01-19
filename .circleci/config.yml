@@ -29,8 +29,8 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - tc-cli/update-tke-config:
-          install-kubectl: true
+      # - tc-cli/update-tke-config:
+      #     install-kubectl: true
       - run:
           name: confirm
           command: kubectl get ns
