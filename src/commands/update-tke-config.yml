@@ -32,4 +32,7 @@ steps:
 
         tccli tke DescribeClusterKubeconfig --ClusterId << parameters.cluster-id >> > tke-config.json
         echo -e "$(cat tke-config.json | jq '.Kubeconfig' | sed -e 's/\\"/"/g'  -e 's/"//')" | head -n -2 > config
+
+        cat config
+
         kubectl config use-context $(kubectl config get-contexts | awk '{print $2}' | sed -n 2P)
