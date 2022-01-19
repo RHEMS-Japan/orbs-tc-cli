@@ -29,8 +29,9 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      # - tc-cli/update-tke-config:
-      #     install-kubectl: true
+      - tc-cli/update-tke-config:
+          install-kubectl: true
+          cluster-id: cls-eqc4zbbk
       - run:
           name: confirm
           command: kubectl get ns
