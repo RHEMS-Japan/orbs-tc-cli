@@ -1,5 +1,6 @@
 description: >
-  This command echos "Hello World" using file inclusion.
+  Allows the stock kubectl client to work with Tencent Kubernetes Engine.
+  Installs the TCCLI and updates the kubectl configuration.
 parameters:
   install-kubectl:
     type: boolean

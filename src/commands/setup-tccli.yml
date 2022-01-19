@@ -1,18 +1,18 @@
 description: >
-  This command echos "Hello World" using file inclusion.
+  Configure TCCLI.
 parameters:
   tc-secret-id:
     type: env_var_name
     default: "TC_SECRET_ID"
-    description: ""
+    description: "TencentCloud API secretId."
   tc-secret-key:
     type: env_var_name
     default: "TC_SECRET_KEY"
-    description: ""
+    description: "TencentCloud API secretKey."
   tc-region:
     type: env_var_name
     default: "TC_REGION"
-    description: ""
+    description: "TencentCloud region to operate in."
 steps:
   - install-tccli
   - run:

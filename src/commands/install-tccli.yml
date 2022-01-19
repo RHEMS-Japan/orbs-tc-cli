@@ -1,9 +1,6 @@
 description: >
-  This command echos "Hello World" using file inclusion.
+  Install the TCCLI via Pip if not already installed.
 steps:
   - run:
-      name: setup python
-      command: << include(scripts/setup-python.sh) >>
-  - run:
       name: install tccli
-      command: pip3 install tccli-intl-en
+      command: << include(scripts/install-tccli.sh) >>
