@@ -32,9 +32,9 @@ jobs:
       - tc-cli/update-tke-config:
           install-kubectl: true
           cluster-id: cls-eqc4zbbk
-      - run:
-          name: confirm
-          command: kubectl get ns
+      # - run:
+      #     name: confirm
+      #     command: kubectl get ns
 
 workflows:
   # Prior to producing a development orb (which requires credentials) basic validation, linting, and even unit testing can be performed.
