@@ -3,7 +3,7 @@ if which tccli; then
     exit 0
 fi
 
-if [ "$(which python3)" ] && [ "$(which pip3)" ]; then
+if [ "$(which python3)" ]; then
     echo "already set up."
 else
     if which apt-get; then
@@ -18,12 +18,9 @@ else
 
     echo "=== python version ==="
     python3 --version
-
-    echo "=== pip version ==="
-    pip3 --version
 fi
 
-pip3 install tccli-intl-en
+pip install tccli-intl-en
 
 echo "=== tccli version ==="
 tccli --version
