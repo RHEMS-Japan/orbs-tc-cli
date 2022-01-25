@@ -3,21 +3,20 @@ if which tccli; then
     exit 0
 fi
 
-if [ "$(which python)" ]; then
+if [ "$(which python)" ] && [ "$(which pip)" ]; then
     echo "already set up."
 else
-    if which apt-get; then
-        export CMD=apt-get
-    else
-        export CMD=yum
-    fi
+    sudo add-apt-repository universe
+    sudo apt update
 
-    sudo ${CMD} -y update
-    sudo ${CMD} -y upgrade
-    sudo ${CMD} -y install python-pip
+    curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py
+    sudo python get-pip.py
 
     echo "=== python version ==="
     python --version
+
+    echo "=== pip version ==="
+    pip --version
 fi
 
 pip install tccli-intl-en
