@@ -31,7 +31,7 @@ jobs:
       - checkout
       - tc-cli/update-tke-config:
           install-kubectl: true
-          cluster-id: cls-eqc4zbbk
+          cluster-id: cls-4mzxrmmq
       # - run:
       #     name: confirm
       #     command: kubectl get ns
