@@ -29,6 +29,7 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
+      - tc-cli/tcr-login
       - tc-cli/update-tke-config:
           install-kubectl: true
           cluster-id: cls-4mzxrmmq
