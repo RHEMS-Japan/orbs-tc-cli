@@ -18,9 +18,9 @@ steps:
   - run:
       name: setup tccli
       command: |
-        PARAM_TC_SECRET_ID=$(eval echo "\$$<< parameters.tc-secret-id >>")
-        PARAM_TC_SECRET_KEY=$(eval echo "\$$<< parameters.tc-secret-key >>")
-        PARAM_TC_REGION=$(eval echo "\$$<< parameters.tc-region >>")
+        PARAM_TC_SECRET_ID=$(eval echo "\$<< parameters.tc-secret-id >>")
+        PARAM_TC_SECRET_KEY=$(eval echo "\$<< parameters.tc-secret-key >>")
+        PARAM_TC_REGION=$(eval echo "\$<< parameters.tc-region >>")
 
         tccli configure set secretId ${PARAM_TC_SECRET_ID}
         tccli configure set secretKey ${PARAM_TC_SECRET_KEY}

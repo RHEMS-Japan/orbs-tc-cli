@@ -30,12 +30,12 @@ steps:
   - run:
       name: create temporary instance token
       command: |
-        TCR_REGISTRY_ID=$(eval echo"\$$<< parameters.registry-id >>")
+        TCR_REGISTRY_ID=$(eval echo"\$<< parameters.registry-id >>")
         tccli tcr CreateInstanceToken --cli-unfold-argument --RegistryId ${TCR_REGISTRY_ID} --TokenType temp > token.json
   - run:
       name: docker login
       command: |
         username=$(cat token.json | jq ".Username")
         password=$(cat token.json | jq ".Token")
-        TCR_ACCOUNT_URL=$(eval echo"\$$<< parameters.access-domain >>")
+        TCR_ACCOUNT_URL=$(eval echo"\$<< parameters.access-domain >>")
         docker login ${TCR_ACCOUNT_URL} --username ${username} --password ${password}
