@@ -10,7 +10,7 @@ else
     sudo apt update
 
     curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py
-    sudo python get-pip.py
+    python get-pip.py
 
     echo "=== python version ==="
     python --version
