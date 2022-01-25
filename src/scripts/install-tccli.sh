@@ -3,7 +3,7 @@ if which tccli; then
     exit 0
 fi
 
-if [ "$(which python3)" ]; then
+if [ "$(which python3)" ] && [ "$(which pip)" ]; then
     echo "already set up."
 else
     if which apt-get; then
