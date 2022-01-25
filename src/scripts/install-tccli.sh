@@ -19,11 +19,11 @@ else
     echo "=== python version ==="
     python3 --version
 
-    curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py
-    python3 get-pip.py
+    echo "=== pip version ==="
+    pip3 --version
 fi
 
-pip install tccli-intl-en
+pip3 install tccli
 
 echo "=== tccli version ==="
 tccli --version
