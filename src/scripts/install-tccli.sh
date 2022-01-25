@@ -3,7 +3,7 @@ if which tccli; then
     exit 0
 fi
 
-if [ "$(which python3)" ]; then
+if [ "$(which python)" ]; then
     echo "already set up."
 else
     if which apt-get; then
@@ -14,10 +14,10 @@ else
 
     sudo ${CMD} -y update
     sudo ${CMD} -y upgrade
-    sudo ${CMD} -y install python3-pip
+    sudo ${CMD} -y install python-pip
 
     echo "=== python version ==="
-    python3 --version
+    python --version
 fi
 
 pip install tccli-intl-en
