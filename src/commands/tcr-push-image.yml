@@ -17,7 +17,7 @@ parameters:
     description: Docker image tags (default = latest)
 steps:
   - run:
-      name: docker build
+      name: docker push
       command: |
         TCR_ACCESS_DOMAIN=$(eval echo "\$<< parameters.access-domain >>")
         docker push ${TCR_ACCESS_DOMAIN}/<< parameters.namespace >>/<< parameters.image >>:<< parameters.tag >>
