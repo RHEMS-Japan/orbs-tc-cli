@@ -29,7 +29,12 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - tc-cli/tcr-login
+      - tc-cli/tcr-build-and-push-image:
+          path: test
+          dockerfile: Dockerfile.test
+          namespace: orb-test
+          image: nginx-override
+          tag: v0.0.0
       - tc-cli/update-tke-config:
           install-kubectl: true
           cluster-id: cls-4mzxrmmq
