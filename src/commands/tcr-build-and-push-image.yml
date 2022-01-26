@@ -54,10 +54,10 @@ steps:
       path: << parameters.path >>
       dockerfile: << parameters.dockerfile >>
       namespace: << parameters.namespace >>
-      name: << parameters.name >>
+      # name: << parameters.name >>
       tag: << parameters.tag >>
   - tcr-push-image:
       access-domain: << parameters.access-domain >>
       namespace: << parameters.namespace >>
-      name: << parameters.name >>
+      # name: << parameters.name >>
       tag: << parameters.tag >>
