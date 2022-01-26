@@ -36,7 +36,7 @@ parameters:
   namespace:
     type: string
     description: Namespace of Tencent Container Registry.
-  name:
+  image:
     type: string
     description: Image name of Tencent Container Registry.
   tag:
@@ -54,10 +54,10 @@ steps:
       path: << parameters.path >>
       dockerfile: << parameters.dockerfile >>
       namespace: << parameters.namespace >>
-      # name: << parameters.name >>
+      image: << parameters.image >>
       tag: << parameters.tag >>
   - tcr-push-image:
       access-domain: << parameters.access-domain >>
       namespace: << parameters.namespace >>
-      # name: << parameters.name >>
+      image: << parameters.image >>
       tag: << parameters.tag >>

@@ -8,7 +8,7 @@ parameters:
   namespace:
     type: string
     description: Namespace of Tencent Container Registry.
-  name:
+  image:
     type: string
     description: Image name of Tencent Container Registry.
   tag:
@@ -20,4 +20,4 @@ steps:
       name: docker build
       command: |
         TCR_ACCESS_DOMAIN=$(eval echo "\$<< parameters.access-domain >>")
-        docker push ${TCR_ACCESS_DOMAIN}/<< parameters.namespace >>/<< parameters.name >>:<< parameters.tag >>
+        docker push ${TCR_ACCESS_DOMAIN}/<< parameters.namespace >>/<< parameters.image >>:<< parameters.tag >>

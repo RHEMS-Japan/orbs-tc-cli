@@ -36,7 +36,7 @@ parameters:
   namespace:
     type: string
     description: Namespace of Tencent Container Registry.
-  name:
+  image:
     type: string
     description: Image name of Tencent Container Registry.
   tag:
@@ -58,5 +58,5 @@ steps:
         docker build \
           <<#parameters.extra-build-args>><<parameters.extra-build-args>><</parameters.extra-build-args>> \
           -f << parameters.path >>/<< parameters.dockerfile >> \
-          -t ${TCR_ACCESS_DOMAIN}/<< parameters.namespace >>/<< parameters.name >>:<< parameters.tag >> \
+          -t ${TCR_ACCESS_DOMAIN}/<< parameters.namespace >>/<< parameters.image >>:<< parameters.tag >> \
           << parameters.path >>
