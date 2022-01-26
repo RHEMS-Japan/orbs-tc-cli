@@ -32,9 +32,8 @@ jobs:
       - tc-cli/tcr-build-and-push-image:
           path: test
           dockerfile: Dockerfile.test
-          namespace: orb-test
           image: nginx-override
-          tag: v0.0.0
+          tag: v0.0.1
       - tc-cli/update-tke-config:
           install-kubectl: true
           cluster-id: cls-4mzxrmmq
