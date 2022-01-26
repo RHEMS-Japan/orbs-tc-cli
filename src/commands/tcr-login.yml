@@ -36,8 +36,8 @@ steps:
   - run:
       name: docker login
       command: |
-        username=$(cat token.json | jq ".Username")
-        password=$(cat token.json | jq ".Token")
+        username=$(cat token.json | jq -r ".Username")
+        password=$(cat token.json | jq -r ".Token")
         echo ${username}
         echo ${password}
         TCR_ACCOUNT_URL=$(eval echo "\$<< parameters.access-domain >>")
