@@ -34,6 +34,7 @@ jobs:
           dockerfile: Dockerfile.test
           image: nginx-override
           tag: v0.0.1
+          namespace: orb-test2
       # - tc-cli/update-tke-config:
       #     install-kubectl: true
       #     cluster-id: cls-4mzxrmmq
