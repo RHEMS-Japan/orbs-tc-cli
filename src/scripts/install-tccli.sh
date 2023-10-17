@@ -14,7 +14,7 @@ else
 
     sudo ${CMD} -y update
     sudo ${CMD} -y upgrade
-    sudo ${CMD} -y install python3-pip
+    sudo ${CMD} -y install python3-pip=22.2.2
 
     echo "=== python version ==="
     python3 --version
