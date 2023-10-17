@@ -22,7 +22,7 @@ else
     echo "=== pip version ==="
     pip3 --version
 fi
-pip3 install --upgrade pip
+
 # pip3 install tccli
 pip3 install tccli==3.0.975.1
 
