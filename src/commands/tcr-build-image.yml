@@ -76,11 +76,6 @@ steps:
             docker --context builder buildx create --name DLC_builder --use
           fi
           context_args="--context builder"
-        elif ! docker buildx ls | grep -q "default * docker"; then
-          set -x
-          docker buildx create --name DLC_builder --use
-          echo "Context is set to DLC_builder"
-          set +x
         fi
 
         set -x
@@ -91,10 +86,8 @@ steps:
           -f << parameters.path >>/<< parameters.dockerfile >> \
           -t ${TCR_ACCESS_DOMAIN}/${TCR_NAMESPACE}/<< parameters.image >>:<< parameters.tag >> \
           --platform "${TCR_EVAL_PLATFORM}" \
-          --load \
           << parameters.path >>
         set +x
 
-        docker images
       environment:
         TCR_PLATFORM: << parameters.platform >>
