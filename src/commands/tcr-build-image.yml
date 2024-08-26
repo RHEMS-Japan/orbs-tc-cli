@@ -93,5 +93,7 @@ steps:
           --platform "${TCR_EVAL_PLATFORM}" \
           << parameters.path >>
         set +x
+
+        docker images
       environment:
         TCR_PLATFORM: << parameters.platform >>
