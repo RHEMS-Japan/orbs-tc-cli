@@ -86,6 +86,7 @@ steps:
           -f << parameters.path >>/<< parameters.dockerfile >> \
           -t ${TCR_ACCESS_DOMAIN}/${TCR_NAMESPACE}/<< parameters.image >>:<< parameters.tag >> \
           --platform "${TCR_EVAL_PLATFORM}" \
+          --load \
           << parameters.path >>
         set +x
 
