@@ -27,6 +27,7 @@ jobs:
   integration-test-1:
     machine:
       image: ubuntu-2004:2024.05.1
+      docker_layer_caching: true
     steps:
       - checkout
       - tc-cli/tcr-build-and-push-image:
