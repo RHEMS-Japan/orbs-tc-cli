@@ -22,16 +22,7 @@ steps:
       command: |
         TCR_ACCESS_DOMAIN=$(eval echo << parameters.access-domain >>)
         TCR_NAMESPACE=$(eval echo << parameters.namespace >>)
-        TCR_STR_EVAL_TAG=$(eval echo "${TCR_STR_TAG}")
-
-        IFS="," read -ra DOCKER_TAGS \<<< "${TCR_STR_EVAL_TAG}"
-
-        for tag in "${DOCKER_TAGS[@]}"; do
 
         set -x
-            docker push ${TCR_ACCESS_DOMAIN}/${TCR_NAMESPACE}/<< parameters.image >>:${tag}"
+          docker push ${TCR_ACCESS_DOMAIN}/${TCR_NAMESPACE}/<< parameters.image >>:<< parameters.tag >>
         set +x
-
-        done
-      environment:
-        TCR_STR_TAG: << parameters.tag >>
