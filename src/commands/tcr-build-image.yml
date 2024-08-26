@@ -76,6 +76,12 @@ steps:
             docker --context builder buildx create --name DLC_builder --use
           fi
           context_args="--context builder"
+        elif ! docker buildx ls | grep -q "default * docker"; then
+            set -x
+            docker buildx create --name DLC_builder --use
+            echo "Context is set to DLC_builder"
+            set +x
+          fi
         fi
 
         set -x
