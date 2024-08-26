@@ -30,12 +30,12 @@ jobs:
       docker_layer_caching: true
     steps:
       - checkout
-      - tc-cli/tcr-build-and-push-image:
-          path: test
-          dockerfile: Dockerfile.test
-          image: nginx-override
-          tag: v0.0.1
-          namespace: orb-test2
+      # - tc-cli/tcr-build-and-push-image:
+      #     path: test
+      #     dockerfile: Dockerfile.test
+      #     image: nginx-override
+      #     tag: v0.0.1
+      #     namespace: orb-test2
           # platform: linux/amd64,linux/arm64/v8
       - tc-cli/tcr-build-image:
           path: test
