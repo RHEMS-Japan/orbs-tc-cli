@@ -26,7 +26,7 @@ jobs:
   # Define one or more jobs which will utilize your orb's commands and parameters to validate your changes.
   integration-test-1:
     machine:
-      image: ubuntu-2004:2023.07.1
+      image: ubuntu-2004:2024.05.1
     steps:
       - checkout
       - tc-cli/tcr-build-and-push-image:
@@ -35,6 +35,7 @@ jobs:
           image: nginx-override
           tag: v0.0.1
           namespace: orb-test2
+          # platform: linux/amd64,linux/arm64/v8
       # - tc-cli/update-tke-config:
       #     install-kubectl: true
       #     cluster-id: cls-4mzxrmmq

@@ -29,6 +29,12 @@ parameters:
     type: string
     default: .
     description: Path to the directory containing your Dockerfile and build context. Defaults to . (working directory).
+  platform:
+    type: string
+    default: linux/amd64
+    description: >-
+      Platform targets for the docker image, multi arch images. Ex.
+      linux/amd64,linux/arm64.
   dockerfile:
     type: string
     default: Dockerfile
@@ -57,9 +63,30 @@ steps:
       command: |
         TCR_ACCESS_DOMAIN=$(eval echo << parameters.access-domain >>)
         TCR_NAMESPACE=$(eval echo << parameters.namespace >>)
+        TCR_EVAL_PLATFORM="$(eval echo "${TCR_PLATFORM}")"
+        BUILDX_NO_DEFAULT_ATTESTATIONS=1
 
-        docker build \
+        IFS=', ' read -ra platform \<<<"${TCR_EVAL_PLATFORM}"
+        number_of_platforms="${#platform[@]}"
+
+        if [ "${number_of_platforms}" -gt 1 ]; then
+          if ! docker context ls | grep builder; then
+            docker context create builder
+            docker run --privileged --rm tonistiigi/binfmt --install all
+            docker --context builder buildx create --name DLC_builder --use
+          fi
+          context_args="--context builder"
+        fi
+
+        set -x
+        docker \
+        ${context_args:+$context_args} \
+        buildx build \
           <<#parameters.extra-build-args>><<parameters.extra-build-args>><</parameters.extra-build-args>> \
           -f << parameters.path >>/<< parameters.dockerfile >> \
           -t ${TCR_ACCESS_DOMAIN}/${TCR_NAMESPACE}/<< parameters.image >>:<< parameters.tag >> \
+          --platform "${TCR_EVAL_PLATFORM}" \
           << parameters.path >>
+        set +x
+      environment:
+        TCR_PLATFORM: << parameters.platform >>
