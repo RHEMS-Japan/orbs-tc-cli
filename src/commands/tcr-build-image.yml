@@ -71,11 +71,16 @@ steps:
 
         if [ "${number_of_platforms}" -gt 1 ]; then
           if ! docker context ls | grep builder; then
-            # docker context create builder
+            docker context create builder
             docker run --privileged --rm tonistiigi/binfmt --install all
-            # docker --context builder buildx create --name DLC_builder --use
+            docker --context builder buildx create --name DLC_builder --use
           fi
           context_args="--context builder"
+        elif ! docker buildx ls | grep -q "default * docker"; then
+          set -x
+          docker buildx create --name DLC_builder --use
+          echo "Context is set to DLC_builder"
+          set +x
         fi
 
         set -x
