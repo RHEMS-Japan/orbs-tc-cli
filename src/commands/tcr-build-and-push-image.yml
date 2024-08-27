@@ -60,13 +60,13 @@ steps:
       extra-build-args: << parameters.extra-build-args >>
       path: << parameters.path >>
       platform: << parameters.platform >>
-      # push-image: true
+      push-image: true
       dockerfile: << parameters.dockerfile >>
       namespace: << parameters.namespace >>
       image: << parameters.image >>
       tag: << parameters.tag >>
-  - tcr-push-image:
-      access-domain: << parameters.access-domain >>
-      namespace: << parameters.namespace >>
-      image: << parameters.image >>
-      tag: << parameters.tag >>
+  # - tcr-push-image:
+  #     access-domain: << parameters.access-domain >>
+  #     namespace: << parameters.namespace >>
+  #     image: << parameters.image >>
+  #     tag: << parameters.tag >>
