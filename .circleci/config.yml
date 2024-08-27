@@ -42,11 +42,11 @@ jobs:
           dockerfile: Dockerfile.test
           image: nginx-override
           tag: v0.0.1
-          platform: linux/arm64/v8
+          # platform: linux/arm64/v8
           namespace: orb-test2
       - run:
-          name: dir
-          command: cd test
+          name: confirm
+          command: docker images
       - tc-cli/tcr-push-image:
           image: nginx-override
           tag: v0.0.1

@@ -77,14 +77,6 @@ steps:
 
         # if [ "${TCR_BOOL_PUSH_IMAGE}" -eq "1" ]; then
         #   set -- "$@" --push
-
-        #   if [ -n "${AWS_ECR_EVAL_LIFECYCLE_POLICY_PATH}" ]; then
-        #     aws ecr put-lifecycle-policy \
-        #       --profile "${AWS_ECR_EVAL_PROFILE_NAME}" \
-        #       --repository-name "${AWS_ECR_EVAL_REPO}" \
-        #       --lifecycle-policy-text "file://${AWS_ECR_EVAL_LIFECYCLE_POLICY_PATH}"
-        #   fi
-
         # # elif [ "${TCR_BOOL_PUSH_IMAGE}" -eq "0" ] && [ "${number_of_platforms}" -le 1 ];then
         # #   set -- "$@" --load
         # fi
