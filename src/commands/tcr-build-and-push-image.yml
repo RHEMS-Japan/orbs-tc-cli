@@ -65,8 +65,3 @@ steps:
       namespace: << parameters.namespace >>
       image: << parameters.image >>
       tag: << parameters.tag >>
-  # - tcr-push-image:
-  #     access-domain: << parameters.access-domain >>
-  #     namespace: << parameters.namespace >>
-  #     image: << parameters.image >>
-  #     tag: << parameters.tag >>

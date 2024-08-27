@@ -36,20 +36,7 @@ jobs:
           image: nginx-override
           tag: v0.0.1
           namespace: orb-test2
-          # platform: linux/amd64,linux/arm64/v8
-      # - tc-cli/tcr-build-image:
-      #     path: test
-      #     dockerfile: Dockerfile.test
-      #     image: nginx-override
-      #     tag: v0.0.1
-      #     # platform: linux/arm64/v8
-      #     namespace: orb-test2
-      # - run:
-      #     name: confirm
-      #     command: docker images
-      # - tc-cli/tcr-push-image:
-      #     image: nginx-override
-      #     tag: v0.0.1
+          platform: linux/amd64,linux/arm64/v8
       # - tc-cli/update-tke-config:
       #     install-kubectl: true
       #     cluster-id: cls-4mzxrmmq
@@ -65,12 +52,12 @@ workflows:
     jobs:
       - orb-tools/lint # Lint Yaml files
       - orb-tools/pack # Pack orb source
-      # - shellcheck/check:
-      #     dir: ./src/scripts
-      #     exclude: SC2148
+      - shellcheck/check:
+          dir: ./src/scripts
+          exclude: SC2148
       # optional: Run BATS tests against your scripts
-      # - bats/run:
-      #     path: ./src/tests
+      - bats/run:
+          path: ./src/tests
       # Publish development version(s) of the orb.
       - orb-tools/publish-dev:
           orb-name: rhems-japan/tc-cli
@@ -78,8 +65,8 @@ workflows:
           requires:
             - orb-tools/lint
             - orb-tools/pack
-            # - bats/run
-            # - shellcheck/check
+            - bats/run
+            - shellcheck/check
       # Trigger an integration workflow to test the
       # dev:${CIRCLE_SHA1:0:7} version of your orb
       - orb-tools/trigger-integration-tests-workflow:
