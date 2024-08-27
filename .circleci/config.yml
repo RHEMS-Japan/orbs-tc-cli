@@ -30,26 +30,26 @@ jobs:
       docker_layer_caching: true
     steps:
       - checkout
-      # - tc-cli/tcr-build-and-push-image:
-      #     path: test
-      #     dockerfile: Dockerfile.test
-      #     image: nginx-override
-      #     tag: v0.0.1
-      #     namespace: orb-test2
-          # platform: linux/amd64,linux/arm64/v8
-      - tc-cli/tcr-build-image:
+      - tc-cli/tcr-build-and-push-image:
           path: test
           dockerfile: Dockerfile.test
           image: nginx-override
           tag: v0.0.1
-          # platform: linux/arm64/v8
           namespace: orb-test2
-      - run:
-          name: confirm
-          command: docker images
-      - tc-cli/tcr-push-image:
-          image: nginx-override
-          tag: v0.0.1
+          # platform: linux/amd64,linux/arm64/v8
+      # - tc-cli/tcr-build-image:
+      #     path: test
+      #     dockerfile: Dockerfile.test
+      #     image: nginx-override
+      #     tag: v0.0.1
+      #     # platform: linux/arm64/v8
+      #     namespace: orb-test2
+      # - run:
+      #     name: confirm
+      #     command: docker images
+      # - tc-cli/tcr-push-image:
+      #     image: nginx-override
+      #     tag: v0.0.1
       # - tc-cli/update-tke-config:
       #     install-kubectl: true
       #     cluster-id: cls-4mzxrmmq
