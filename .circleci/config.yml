@@ -44,6 +44,9 @@ jobs:
           tag: v0.0.1
           platform: linux/arm64/v8
           namespace: orb-test2
+      - run:
+          name: dir
+          command: cd test
       - tc-cli/tcr-push-image:
           image: nginx-override
           tag: v0.0.1
