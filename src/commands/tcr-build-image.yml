@@ -67,49 +67,40 @@ steps:
   - run:
       name: docker build
       command: |
-        # TCR_ACCESS_DOMAIN=$(eval echo << parameters.access-domain >>)
-        # TCR_NAMESPACE=$(eval echo << parameters.namespace >>)
-        # TCR_EVAL_PLATFORM="$(eval echo "${TCR_PLATFORM}")"
-        # BUILDX_NO_DEFAULT_ATTESTATIONS=1
-
-        # IFS=', ' read -ra platform \<<<"${TCR_EVAL_PLATFORM}"
-        # number_of_platforms="${#platform[@]}"
-
-        # if [ "${TCR_BOOL_PUSH_IMAGE}" -eq "1" ]; then
-        #   set -- "$@" --push
-        # # elif [ "${TCR_BOOL_PUSH_IMAGE}" -eq "0" ] && [ "${number_of_platforms}" -le 1 ];then
-        # #   set -- "$@" --load
-        # fi
-
-        # if [ "${number_of_platforms}" -gt 1 ]; then
-        #   if ! docker context ls | grep builder; then
-        #     docker context create builder
-        #     docker run --privileged --rm tonistiigi/binfmt --install all
-        #     docker --context builder buildx create --name DLC_builder --use
-        #   fi
-        #   context_args="--context builder"
-        # fi
-
-        # set -x
-        # docker \
-        # ${context_args:+$context_args} \
-        # buildx build \
-        #   <<#parameters.extra-build-args>><<parameters.extra-build-args>><</parameters.extra-build-args>> \
-        #   -f << parameters.path >>/<< parameters.dockerfile >> \
-        #   -t ${TCR_ACCESS_DOMAIN}/${TCR_NAMESPACE}/<< parameters.image >>:<< parameters.tag >> \
-        #   --platform "${TCR_EVAL_PLATFORM}" \
-        #   "$@" \
-        #   << parameters.path >>
-        # set +x
-
         TCR_ACCESS_DOMAIN=$(eval echo << parameters.access-domain >>)
         TCR_NAMESPACE=$(eval echo << parameters.namespace >>)
+        TCR_EVAL_PLATFORM="$(eval echo "${TCR_PLATFORM}")"
+        BUILDX_NO_DEFAULT_ATTESTATIONS=1
 
-        docker build \
+        IFS=', ' read -ra platform \<<<"${TCR_EVAL_PLATFORM}"
+        number_of_platforms="${#platform[@]}"
+
+        if [ "${TCR_BOOL_PUSH_IMAGE}" -eq "1" ]; then
+          set -- "$@" --push
+        # elif [ "${TCR_BOOL_PUSH_IMAGE}" -eq "0" ] && [ "${number_of_platforms}" -le 1 ];then
+        #   set -- "$@" --load
+        fi
+
+        if [ "${number_of_platforms}" -gt 1 ]; then
+          if ! docker context ls | grep builder; then
+            docker context create builder
+            docker run --privileged --rm tonistiigi/binfmt --install all
+            docker --context builder buildx create --name DLC_builder --use
+          fi
+          context_args="--context builder"
+        fi
+
+        set -x
+        docker \
+        ${context_args:+$context_args} \
+        buildx build \
           <<#parameters.extra-build-args>><<parameters.extra-build-args>><</parameters.extra-build-args>> \
           -f << parameters.path >>/<< parameters.dockerfile >> \
           -t ${TCR_ACCESS_DOMAIN}/${TCR_NAMESPACE}/<< parameters.image >>:<< parameters.tag >> \
+          --platform "${TCR_EVAL_PLATFORM}" \
+          "$@" \
           << parameters.path >>
+        set +x
 
       environment:
         TCR_PLATFORM: << parameters.platform >>
