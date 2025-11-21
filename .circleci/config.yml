@@ -3,6 +3,7 @@ version: 2.1
 orbs:
   # Replace this with your own!
   tc-cli: rhems-japan/tc-cli@<<pipeline.parameters.dev-orb-version>>
+  package: rhems-japan/package@0.0.84
   orb-tools: circleci/orb-tools@10.0
   bats: circleci/bats@1.0
   shellcheck: circleci/shellcheck@2.0
@@ -59,9 +60,17 @@ jobs:
       # - run:
       #     name: confirm
       #     command: kubectl get ns
+  test-job:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - package/install-tccli
 workflows:
   # Prior to producing a development orb (which requires credentials) basic validation, linting, and even unit testing can be performed.
   # This workflow will run on every commit
+  test-workflow:
+    jobs:
+      - test-job
   test-pack:
     unless: << pipeline.parameters.run-integration-tests >>
     jobs:
