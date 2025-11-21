@@ -23,6 +23,24 @@ else
     pip3 --version
 fi
 
+echo "=== Latest 10 tccli versions available ==="
+pip index versions tccli \
+  | grep "Available versions" \
+  | sed 's/Available versions: //' \
+  | tr ',' '\n' \
+  | sed 's/ //g' \
+  | head -n 10
+
+
+# Install tencentcloud-sdk-python with specific version if specified
+if [ -n "${TCCLI_SDK_VERSION}" ]; then
+    echo "Installing tencentcloud-sdk-python version ${TCCLI_SDK_VERSION}"
+    pip3 install "tencentcloud-sdk-python==${TCCLI_SDK_VERSION}"
+else
+    echo "Installing latest tencentcloud-sdk-python version"
+    pip3 install tencentcloud-sdk-python
+fi
+
 # Install tccli with specific version if specified
 if [ -n "${TCCLI_VERSION}" ]; then
     echo "Installing tccli version ${TCCLI_VERSION}"
@@ -36,11 +54,4 @@ fi
 echo "=== tccli version ==="
 tccli --version
 
-echo "=== Latest 10 tccli versions available ==="
-pip index versions tccli \
-  | grep "Available versions" \
-  | sed 's/Available versions: //' \
-  | tr ',' '\n' \
-  | sed 's/ //g' \
-  | head -n 10
 
