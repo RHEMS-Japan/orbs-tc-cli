@@ -23,8 +23,24 @@ else
     pip3 --version
 fi
 
-pip3 install tccli
+# Install tccli with specific version if specified
+if [ -n "${TCCLI_VERSION}" ]; then
+    echo "Installing tccli version ${TCCLI_VERSION}"
+    pip3 install "tccli==${TCCLI_VERSION}"
+else
+    echo "Installing latest tccli version"
+    pip3 install tccli
+fi
 # pip3 install tccli-intl-en
 
 echo "=== tccli version ==="
 tccli --version
+
+echo "=== Latest 10 tccli versions available ==="
+pip index versions tccli \
+  | grep "Available versions" \
+  | sed 's/Available versions: //' \
+  | tr ',' '\n' \
+  | sed 's/ //g' \
+  | head -n 10
+

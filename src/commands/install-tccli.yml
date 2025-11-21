@@ -1,6 +1,13 @@
 description: >
   Install the TCCLI via Pip if not already installed.
+parameters:
+  version:
+    type: string
+    default: ""
+    description: "Specific version of tccli to install. If empty, installs the latest version."
 steps:
   - run:
       name: install tccli
+      environment:
+        TCCLI_VERSION: << parameters.version >>
       command: << include(scripts/install-tccli.sh) >>
