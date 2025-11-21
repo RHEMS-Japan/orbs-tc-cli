@@ -48,10 +48,18 @@ jobs:
       # - run:
       #     name: confirm
       #     command: kubectl get ns
-
+  test-job:
+    docker:
+      - image: cimg/base:stable
+    resource_class: small
+    steps:
+      - tc-cli/install-tccli
 workflows:
   # Prior to producing a development orb (which requires credentials) basic validation, linting, and even unit testing can be performed.
   # This workflow will run on every commit
+  test-workflow:
+    jobs:
+      - test-job
   test-pack:
     unless: << pipeline.parameters.run-integration-tests >>
     jobs:
