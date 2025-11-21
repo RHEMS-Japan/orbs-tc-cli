@@ -23,7 +23,7 @@ else
     pip3 --version
 fi
 
-echo "=== Latest 10 tccli versions available ==="
+echo "=== The 10 latest available tccli versions ==="
 pip3 index versions tccli 2>/dev/null \
   | grep "Available versions" \
   | sed 's/Available versions: //' \
@@ -31,7 +31,7 @@ pip3 index versions tccli 2>/dev/null \
   | sed 's/ //g' \
   | head -n 10 || true
 
-echo "=== Latest 10 tencentcloud-sdk-python versions available ==="
+echo "=== The 10 latest available tencentcloud-sdk-python versions ==="
 pip3 index versions tencentcloud-sdk-python 2>/dev/null \
   | grep "Available versions" \
   | sed 's/Available versions: //' \
