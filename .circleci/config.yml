@@ -27,11 +27,11 @@ jobs:
   integration-test-1:
     machine:
       image: ubuntu-2004:2024.05.1
-      docker_layer_caching: true
+      docker_layer_caching: false
     steps:
       # - checkout
-      # - tccli/install-tccli
-      - tccli/install-tccli:
+      # - tc-cli/install-tccli
+      - tc-cli/install-tccli:
           version: "3.0.1420.1"
       # - tc-cli/tcr-build-and-push-image:
       #     path: test
