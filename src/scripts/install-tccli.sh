@@ -24,7 +24,7 @@ else
 fi
 
 echo "=== Latest 10 tccli versions available ==="
-pip index versions tccli \
+pip3 index versions tccli \
   | grep "Available versions" \
   | sed 's/Available versions: //' \
   | tr ',' '\n' \
