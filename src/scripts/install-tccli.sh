@@ -53,4 +53,7 @@ fi
 echo "=== tccli version ==="
 tccli --version
 
+echo "=== tencentcloud-sdk-python version ==="
+pip3 show tencentcloud-sdk-python | grep Version
+
 
