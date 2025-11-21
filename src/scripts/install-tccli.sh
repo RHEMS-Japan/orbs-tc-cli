@@ -24,20 +24,20 @@ else
 fi
 
 echo "=== The 10 latest available tccli versions ==="
-pip3 index versions tccli 2>/dev/null \
+(pip3 index versions tccli 2>/dev/null || pip index versions tccli 2>/dev/null || echo "Unable to fetch version list") \
   | grep "Available versions" \
   | sed 's/Available versions: //' \
   | tr ',' '\n' \
   | sed 's/ //g' \
-  | head -n 10 || true
+  | head -n 10 2>/dev/null || echo "Version list not available"
 
 echo "=== The 10 latest available tencentcloud-sdk-python versions ==="
-pip3 index versions tencentcloud-sdk-python 2>/dev/null \
+(pip3 index versions tencentcloud-sdk-python 2>/dev/null || pip index versions tencentcloud-sdk-python 2>/dev/null || echo "Unable to fetch version list") \
   | grep "Available versions" \
   | sed 's/Available versions: //' \
   | tr ',' '\n' \
   | sed 's/ //g' \
-  | head -n 10 || true
+  | head -n 10 2>/dev/null || echo "Version list not available"
 
 # Install tencentcloud-sdk-python with specific version if specified
 if [ -n "${TCCLI_SDK_VERSION}" ]; then

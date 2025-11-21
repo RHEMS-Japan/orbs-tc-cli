@@ -27,8 +27,7 @@ jobs:
   # Define one or more jobs which will utilize your orb's commands and parameters to validate your changes.
   integration-test-1:
     machine:
-      image: ubuntu-2004:2024.05.1
-      docker_layer_caching: false
+      image: ubuntu-2404:2025.09.1
       resource_class: medium
     steps:
       # - checkout
@@ -37,13 +36,11 @@ jobs:
       #     version: "3.0.1421.1"
       #     sdk-version: "3.0.1491"
   integration-test-2:
-    machine:
-      image: ubuntu-2004:2024.05.1
-      resource_class: medium
+    docker:
+      - image: cimg/base:stable
     steps:
       # - checkout
-      # - tc-cli/install-tccli
-      - tc-cli/setup-tccli
+      - tc-cli/install-tccli
       # - tc-cli/setup-tccli:
       #     version: "3.1.1.1"
       #     sdk-version: "3.1.1"
