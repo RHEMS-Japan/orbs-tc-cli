@@ -30,9 +30,9 @@ jobs:
       docker_layer_caching: true
     steps:
       # - checkout
-      - tccli/install-tccli
-      # - tccli/install-tccli:
-      #     version: "3.0.1420.1"
+      # - tccli/install-tccli
+      - tccli/install-tccli:
+          version: "3.0.1420.1"
       # - tc-cli/tcr-build-and-push-image:
       #     path: test
       #     dockerfile: Dockerfile.test
